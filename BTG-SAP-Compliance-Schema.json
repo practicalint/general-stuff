@@ -1,0 +1,332 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "BTG-SAP-Controls Schema",
+  "description": "A compliance control definition with implementation",
+  "type": "object",
+  "properties": {
+    "seq": {
+      "description": "Unique ID",
+      "type": "integer",
+      "minimum": 1
+    },
+    "NISTSP800_53rev4Controls": {
+      "type": "object",
+      "properties": {
+        "family": {
+          "description": "The type of control",
+          "type": "string"
+        },
+        "controlMajor": {
+          "description": "The Major Control ID",
+          "type": "string"
+        },
+        "controlSubParts": {
+          "description": " The Minor Control ID ",
+          "type": "string"
+        },
+        "title": {
+          "description": " The Control Title ",
+          "type": "string"
+        },
+        "description": {
+          "description": "A detailed description",
+          "type": "string"
+        },
+        "priority": {
+          "description": "Priority Level",
+          "enum": ["P0", "P1", "P2", "P3"],
+          "type": "string"
+        },
+        "controlBaseline": {
+          "type": "object",
+          "properties": {
+            "low": {
+              "description": "NIST SP 800-53 rev4 Control Baselines Low",
+              "type": "boolean"
+            },
+            "moderate": {
+              "description": "NIST SP 800-53 rev4 Control Baselines Moderate",
+              "type": "boolean"
+            },
+            "high": {
+              "description": "NIST SP 800-53 rev4 Control Baselines High",
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+        "required": ["family", "controlMajor", "controlSubParts", "title", "description", "priority"],
+        "additionalProperties": false
+    },
+    "CNSSInstruction1253ControlSelection": {
+      "type": "object",
+      "properties": {
+        "confidentiality": {
+          "type": "object",
+          "properties": {
+            "low": {
+              "description": "CNSS Instruction 1253 Confidentiality Control Low",
+              "enum": ["true", "false", "extra"],
+              "type": "string"
+            },
+            "moderate": {
+              "description": "NCNSS Instruction 1253 Confidentiality Control Moderate",
+              "enum": ["true", "false", "extra"],
+              "type": "string"
+            },
+            "high": {
+              "description": "CNSS Instruction 1253 Confidentiality Control High",
+              "enum": ["true", "false", "extra"],
+              "type": "string"
+            }
+          },
+            "additionalProperties": false
+        },
+          "integrity": {
+            "type": "object",
+            "properties": {
+              "low": {
+                "description": "CNSS Instruction 1253 Integrity Control Low",
+                "enum": ["true", "false", "extra"],
+                "type": "string"
+              },
+              "moderate": {
+                "description": "CNSS Instruction 1253 Integrity Control Moderate",
+                "enum": ["true", "false", "extra"],
+                "type": "string"
+              },
+              "high": {
+                "description": "CNSS Instruction 1253 Integrity Control High",
+                "enum": ["true", "false", "extra"],
+                "type": "string"
+              }
+            },
+              "additionalProperties": false
+          },
+          "availability": {
+            "type": "object",
+            "properties": {
+              "low": {
+                "description": "CNSS Instruction 1253 Availability Control Low",
+                "enum": ["true", "false", "extra"],
+                "type": "string"
+              },
+              "moderate": {
+                "description": "CNSS Instruction 1253 Availability Control Moderate",
+                "enum": ["true", "false", "extra"],
+                "type": "string"
+              },
+              "high": {
+                "description": "CNSS Instruction 1253 Availability Control High",
+                "enum": ["true", "false", "extra"],
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+      },
+        "additionalProperties": false
+    },
+    "FedRAMPControlSelection": {
+      "type": "object",
+      "properties": {
+        "low": {
+          "description": "FedRAMP Control Low",
+          "type": "boolean"
+        },
+        "moderate": {
+          "description": "FedRAMP Control Moderate",
+          "type": "boolean"
+        },
+        "high": {
+          "description": "FedRAMP Control High",
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "DoDCloudSRGControlSelection": {
+      "type": "object",
+      "properties": {
+        "minimum": {
+          "description": "DoD Cloud SRG Control Minimum",
+          "type": "boolean"
+        },
+        "level4": {
+          "description": "DoD Cloud SRG Control level 4",
+          "type": "boolean"
+        },
+        "level5": {
+          "description": "DoD Cloud SRG Control level 5",
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "QuickStartArchitectureCommentsNISTSP800_53Controls": {
+      "type": "object",
+      "properties": {
+        "addressedByQuickStart": {
+          "description": "NIST SP 800-53 AWS QuickStart Addressed or Not",
+          "type": "boolean"
+        },
+        "influence": {
+          "description": "NIST SP 800-53 AWS QuickStart Influence",
+          "type": "string"
+        },
+        "responsibility": {
+          "description": "NIST SP 800-53 AWS QuickStart Responsibility",
+          "type": "string"
+        },
+        "AWSQuickStartControlImplementation": {
+          "description": "NIST SP 800-53 AWS QuickStart Implementation",
+          "type": "string"
+        }
+      },
+      "required": ["addressedByQuickStart", "influence"],
+      "additionalProperties": false
+    },
+    "CrossReferencesOtherComplianceFrameworks": {
+      "type": "object",
+      "properties": {
+        "NISTSP800_171": {
+          "description": "NIST SP 800-171 Cross Refererence Description",
+          "type": "string"
+        },
+        "trustedInternetConnectionInitiativeCapabilitiesVersion2": {
+          "type": "object",
+          "properties": {
+            "capability": {
+              "description": "Trusted Internet Connection Initiative (TIC) Capability",
+              "type": "string"
+            },
+            "summary": {
+              "description": "Trusted Internet Connection Initiative (TIC) Summary",
+              "type": "string"
+            },
+            "definition": {
+              "description": "Trusted Internet Connection Initiative (TIC) Definition",
+              "type": "string"
+            },
+            "relatedRequirementsGuidance": {
+              "description": "Trusted Internet Connection Initiative (TIC) Extra Requirements and Guidance",
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+          }
+        },
+      "additionalProperties": false
+    },
+    "CloudFormationTemplateMapping": {
+      "type": "object",
+      "properties": {
+        "MAINCloudFormationStackTemplate": {
+          "description": "MAIN CloudFormation Stack/Template",
+          "default": "N/A",
+          "type": "string"
+        },
+        "IAMCloudFormationStackTemplate": {
+          "description": "IAM CloudFormation Stack/Template",
+          "default": "N/A",
+          "type": "string"
+        },
+        "MANAGMENTVPCCloudFormationStackTemplate": {
+          "description": "MANAGMENTVPC CloudFormation Stack/Template",
+          "default": "N/A",
+          "type": "string"
+        },
+        "PRODUCTIONVPCCloudFormationStackTemplate": {
+          "description": "PRODUCTIONVPC CloudFormation Stack/Template",
+          "default": "N/A",
+          "type": "string"
+        },
+        "LOGGINGCloudFormationStackTemplate": {
+          "description": "LOGGING CloudFormation Stack/Template",
+          "default": "N/A",
+          "type": "string"
+        },
+        "CONFIGRULESCloudFormationStackTemplate": {
+          "description": "CONFIG-RULES CloudFormation Stack/Template",
+          "default": "N/A",
+          "type": "string"
+        },
+        "NATINSTANCECloudFormationStackTemplate": {
+          "description": "NAT-INSTANCE CloudFormation Stack/Template",
+          "default": "N/A",
+          "type": "string"
+        },
+        "APPLICATIONCloudFormationStackTemplate": {
+          "description": "APPLICATION CloudFormation Stack/Template",
+          "default": "N/A",
+          "type": "string"
+        }
+      },
+      "required": ["MAINCloudFormationStackTemplate", "IAMCloudFormationStackTemplate", "MANAGMENTVPCCloudFormationStackTemplate", "PRODUCTIONVPCCloudFormationStackTemplate", "LOGGINGCloudFormationStackTemplate", "CONFIGRULESCloudFormationStackTemplate", "NATINSTANCECloudFormationStackTemplate", "APPLICATIONCloudFormationStackTemplate"],
+      "additionalProperties": false
+    },
+    "implementation": {
+      "type": "object",
+      "properties": {
+        "projectTarget": {
+          "description": "Project target",
+          "type": "string"
+        },
+        "controlOrigin": {
+          "description": "Origin of the control. At what level of the architecture is it implemented.",
+          "type": "string"
+        },
+        "internalDescription": {
+          "description": "NWhat it really means in our context (created by us)",
+          "type": "string"
+        },
+        "controlSatisified": {
+          "description": "Control satisfied",
+          "type": "string"
+        },
+        "method": {
+          "description": "How we accomplished it",
+          "type": "string"
+        },
+        "DocLink": {
+          "description": "Link to documentation",
+          "type": "string"
+        },
+        "inactiveControlGoverning": {
+          "description": "Has the control been inactivated by the governing authority",
+          "default": false,
+          "type": "boolean"
+        },
+        "inactiveControlApplication": {
+          "description": "Has the control been deemed inactivated by the application/testing authority",
+          "default": false,
+          "type": "boolean"
+        },
+        "searchTags": {
+          "description": "Searchable Tags array",
+          "type": "array",
+          "items": {
+              "type": "string"
+          },
+          "maxitems": 10,
+          "uniqueitems": true
+        },
+        "createdAt": {
+          "description": "Timestamp entry was created",
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "description": "Timestamp entry was updated",
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["controlOrigin", "internalDescription", "controlSatisified", "method", "DocLink", "inactiveControlGoverning", "inactiveControlApplication"],
+      "additionalProperties": false
+    }
+ },
+      "required": ["seq"],
+      "additionalProperties": false
+}
